@@ -1,25 +1,22 @@
 # compiler-implementation
-ToyPL, toy programming language
+ToyPL, toy programming language, 视频作者设计的玩具编程语言
 
-implementation for a simple compiler, follow the video list on youtube
+跟着youtube视频，实现一个简单的编译器
 
-source:
-- [play list] https://www.youtube.com/channel/UCkyrFlOF7I6U-IMUxum9HrA/videos
-- [first video] https://www.youtube.com/watch?v=xqcd6hZD6MY
+原视频:
+- [视频列表] https://www.youtube.com/channel/UCkyrFlOF7I6U-IMUxum9HrA/videos
+- [第一个视频] https://www.youtube.com/watch?v=xqcd6hZD6MY
 
-This document looks messy at the moment. The reason is that 
-> "premature optimization is the root of all evil". 
+这份文档目前看起来很乱，随着理解加深，我会在后续持续重构它
+> 过早优化是万恶之源
 
-I will revise it with the learning progress.
+## 01 
+介绍编译原理
 
-## 01 Introduction to the compiler
+## 02
+实现词法分析器，实现在***basic.py***
 
-
-## 02 Lexical Analysis
-implemented in ***basic.py***
-
-Lexer = code -> lexer -> Tokens
-
+词法分析器 = 代码 -> **词法分析** -> Token列表
 ```
 if xxx:
     xxx:
@@ -27,24 +24,24 @@ else:
     xxx
 ```
 
-The compiler read the source code from a file as a large string shows below
+编译器从文件读取源代码，得到一个字符串
 ```
 if xxx: \n xxx \n else: xxx
 ```
 
-tokenizer -> split the code into a list of token
+分词 -> 一句代码切分成token
 
-token: lexical unit => <token-name, attribute-value>
+token: 词法单元 => <token-name, attribute-value>
 
 实现目标算术器：
 - 1 + 1 - 2 + 4 = 4
 - (1 + 1) * 2 = 4
 - 1 *+ 1 = Error
 
-## 03 Syntactic analysis
-implemented in ***grammar.py***
+## 03
+实现语法分析器，实现在grammar.py
 
-Usage
+运行
 ```shell
 python main.py
 ```
