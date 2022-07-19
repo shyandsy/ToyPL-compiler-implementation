@@ -1,7 +1,5 @@
-import time
-
-from basic import Lexer
-from grammar import Parser
+from lexer import Lexer
+from parsers import Parser
 
 
 def run(fn, text):
@@ -18,7 +16,6 @@ def run(fn, text):
 
 if __name__ == '__main__':
     while True:
-        # time.sleep(2000)
         text = input("basic > ")
         res, err = run("<stdin>", text)
         if err:

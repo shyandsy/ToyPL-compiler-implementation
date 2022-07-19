@@ -1,47 +1,12 @@
-from basic import (Token, Lexer)
-from constant import (TT_INT, TT_FLOAT, TT_PLUS, TT_MINUS, TT_MUL, TT_DIV, TT_LPAREN, TT_RPAREN, TT_EOF)
-from errors import (InvalidSyntaxError)
-
-"""
-AST节点
-"""
-
-
-class NumberNode(object):
-    def __init__(self, token: Token):
-        self.tok = token
-
-    def __repr__(self):
-        return f'{self.tok}'
-
-
-class BinOpNode(object):
-    # 二元操作 + - * /
-    def __init__(self, left_node: Token, op_tok: Token, right_node: Token):
-        self.left_node = left_node
-        self.op_tok = op_tok
-        self.right_node = right_node
-
-    def __repr__(self):
-        return f'({self.left_node, self.op_tok, self.right_node})'
-
-
-class UnaryOpNode(object):
-    # 一元操作 -1   op_tok = -, node = 1
-    def __init__(self, op_tok: Token, node: Token):
-        self.op_tok = op_tok
-        self.node = node
-
-    def __repr__(self):
-        return f'({self.op_tok, self.node})'
-
-
-"""
-语法解析结果
-"""
+from ast_node import *
+from errors import *
+from tokens import *
 
 
 class ParserResult(object):
+    """
+    语法解析结果
+    """
     def __init__(self):
         self.error = None
         self.node = None
@@ -62,12 +27,10 @@ class ParserResult(object):
         return res
 
 
-"""
-词法分析器
-"""
-
-
 class Parser(object):
+    """
+    词法分析器
+    """
     def __init__(self, tokens):
         self.tokens = tokens
         self.tok_idx = -1
@@ -105,7 +68,7 @@ class Parser(object):
         INT -> 1
         tok = +
         并不需要error判断，他只是一个简单的token
-        
+
         -1 + 1
         MINUS -> 0
         tok = 1
@@ -176,13 +139,3 @@ class Parser(object):
             right = res.register(func())
             left = BinOpNode(left, op_tok, right)
         return res.success(left)
-
-
-def run(fn, text):
-    lexer = Lexer(fn, text)
-    tokens, error = lexer.make_token()
-    print(tokens)
-    # 生成AST
-    parser = Parser(tokens)
-    ast = parser.parse()
-    return ast.node, ast.error
