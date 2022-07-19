@@ -1,7 +1,10 @@
-# compiler-implementation
+# ToyPL - Compiler Implementation
 ToyPL, toy programming language, 视频作者设计的玩具编程语言
 
 跟着youtube视频，实现一个简单的编译器
+
+- [English Readme](https://github.com/shyandsy/ToyPL-compiler-implementation/blob/main/README.md)
+- [English Q&A](https://github.com/shyandsy/ToyPL-compiler-implementation/blob/main/Question-And-Answer.md)
 
 原视频:
 - [视频列表] https://www.youtube.com/channel/UCkyrFlOF7I6U-IMUxum9HrA/videos
