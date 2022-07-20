@@ -87,14 +87,11 @@ factor -> INT | FLOAT
 ## 04 实现解释器
 
 解释器实现
-- parser -> RTResult(存放解释器执行结果)
-- 解释器执行过程：通过ast node中不同节点的属性，进行不同的操作。
+parser -> RTResult(存放解释器执行结果)
+解释器执行过程：通过ast node中不同节点的属性，进行不同的操作。
 对于二元操作BinOp，
 
 比如 1+1
-```
 left node -> 1
 right node -> 1
-再执行 left node + right node
-```
-![04-screenshot](https://github.com/shyandsy/ToyPL-compiler-implementation/images/04-screenshot.png)
+再执行加法操作
