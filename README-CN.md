@@ -84,3 +84,14 @@ factor -> INT | FLOAT
   - 可以有一个PLUS | MINUS
   - 可以有 '(' + 一个expr表达式 + ')'
 
+## 04 实现解释器
+
+解释器实现
+parser -> RTResult(存放解释器执行结果)
+解释器执行过程：通过ast node中不同节点的属性，进行不同的操作。
+对于二元操作BinOp，
+
+比如 1+1
+left node -> 1
+right node -> 1
+再执行加法操作

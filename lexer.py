@@ -1,31 +1,6 @@
-from errors import (IllegalCharError)
-from constant import (DIGITS, TT_INT, TT_FLOAT, TT_PLUS,TT_MINUS, TT_MUL, TT_DIV, TT_LPAREN, TT_RPAREN, TT_EOF)
-from position import Position
-
-
-class Token(object):
-    # <token-name, attribute-value >
-    def __init__(self, ttype: str, value=None, pos_start: Position = None, pos_end: Position = None):
-        """
-        :param ttype: 类型
-        :param value:
-        :param pos_start: Position类实例，当前起始位置
-        :param pos_end: Position类实例，当前结束位置
-        """
-        self.ttype = ttype
-        self.value = value
-        if pos_start:
-            # Token 单个字符, + => pos_start = pos_end, advance
-            self.pos_start = pos_start.copy()
-            self.pos_end = pos_start.copy()
-            self.pos_end.advance(self.value)
-        if pos_end:
-            self.pos_end = pos_end.copy()
-
-    def __repr__(self):
-        if self.value:
-            return f'{self.ttype}: {self.value}'
-        return f'{self.ttype}'
+from tokens import *
+from position import *
+from errors import *
 
 
 class Lexer(object):
@@ -89,6 +64,8 @@ class Lexer(object):
         """
         num_str = ''
         dot_count = 0
+        pos_start = self.pos.copy()
+
         while self.current_char is not None and self.current_char in DIGITS + '.':
             if self.current_char == '.':
                 if dot_count == 1:
@@ -99,6 +76,6 @@ class Lexer(object):
                 num_str += self.current_char
             self.advance()
         if dot_count == 0:
-            return Token(TT_INT, int(num_str))
+            return Token(TT_INT, int(num_str), pos_start, self.pos)
         else:
-            return Token(TT_FLOAT, float(num_str))
+            return Token(TT_FLOAT, float(num_str), pos_start, self.pos)

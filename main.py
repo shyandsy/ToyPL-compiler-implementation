@@ -1,8 +1,6 @@
-import time
-
-from basic import Lexer
-from grammar import Parser
-
+from lexer import Lexer
+from parsers import Parser
+from interpreter import Interpreter, Context
 
 def run(fn, text):
     lexer = Lexer(fn, text)
@@ -13,12 +11,18 @@ def run(fn, text):
     # 生成AST
     parser = Parser(tokens)
     ast = parser.parse()
-    return ast.node, ast.error
+    print("ast node", ast.node)
+    print("ast error", ast.error)
+
+    interpreter = Interpreter()
+    context = Context('<program>')
+    res = interpreter.visit(ast.node, context)
+
+    return res.value, res.error
 
 
 if __name__ == '__main__':
     while True:
-        # time.sleep(2000)
         text = input("basic > ")
         res, err = run("<stdin>", text)
         if err:

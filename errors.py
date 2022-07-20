@@ -30,3 +30,32 @@ class InvalidSyntaxError(Error):
     # 无效语法
     def __init__(self, pos_start, pos_end, details):
         super().__init__(pos_start, pos_end, "Invalid Syntax", details)
+
+
+class RTError(Error):
+    # 运行时错误
+    def __init__(self, pos_start: Position, pos_end: Position, details: str, context):
+        super().__init__(pos_start, pos_end, "Runtime Error", details)
+        self.context = context
+
+    def as_string(self):
+        result = self.generate_trace_stack()
+        result += f'{self.error_name}: {self.details}'
+        result += f'File: {self.pos_start.fn}, line {self.pos_end.line + 1}'
+        return result
+
+    def generate_trace_stack(self):
+        """
+        生成错误栈信息
+        :return:
+        """
+        result = ''
+        pos = self.pos_start
+        ctx = self.context
+
+        # 上下文可能存在parent
+        while ctx:
+            result = f' File {pos.fn}, line {str(pos.line + 1)}, in {ctx.display_name}\n' + result
+            pos = ctx.parent_entry_pos
+            ctx = ctx.parent
+        return 'Traceback (most recent call last):\n' + result
