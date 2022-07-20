@@ -1,16 +1,20 @@
-# compiler-implementation
-ToyPL, toy programming language
+# ToyPL - Compiler Implementation
+toy programming language
 
 implementation for a simple compiler, follow the video list on youtube
+
+- [中文版文档](https://github.com/shyandsy/ToyPL-compiler-implementation/blob/main/README-CN.md)
+- [问答](https://github.com/shyandsy/ToyPL-compiler-implementation/blob/main/Question-And-Answer.CN.md)
+
 
 source:
 - [play list] https://www.youtube.com/channel/UCkyrFlOF7I6U-IMUxum9HrA/videos
 - [first video] https://www.youtube.com/watch?v=xqcd6hZD6MY
 
-This document looks messy at the moment. The reason is that 
+This document looks messy at the moment. I will revise it with the learning progress.
 > "premature optimization is the root of all evil". 
 
-I will revise it with the learning progress.
+
 
 ## 01 Introduction to the compiler
 
