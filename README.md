@@ -89,3 +89,12 @@ factor -> INT | FLOAT
   - 可以有 '(' + 一个expr表达式 + ')'
 
 ## 04 Interpreter
+
+Principle
+token parser -> RTResult(store the result from interpreter)
+Execution for Interpreter: do correspond operation based on the properties from Ast Node中
+
+For the BinOp, such as 1+1
+left node -> 1
+right node -> 1
+we execute + operation for left node and right node
